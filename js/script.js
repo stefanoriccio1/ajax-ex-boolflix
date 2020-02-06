@@ -32,22 +32,25 @@ $.ajax( {
   success: function (data) {
     printData(data);
   },
-
   error: function (request, state, error) {
     alert("E' avvenuto un errore. " + error);
     console.log(error);
   }
 });
 
-// FUNCTIONS ------------------>
-function printData(data){
+// prnedo il value dalla searbar al click
+$(document).on('click', 'button', function(){
+  console.log('ciao');
+});
 
-  var movie_data = data.results;
+// FUNCTIONS ------------------>
+function printData(movie){
+
+  var movie_data = movie.results;
   var source = $("#movie-template").html()
   var template = Handlebars.compile(source);
 
   for (var i = 0; i < movie_data.length; i++) {
-    console.log(movie_data[i]);
     var context = {
       title: movie_data[i].title,
       original_title: movie_data[i].original_title,
