@@ -15,14 +15,15 @@
       <input class= "search_input" type="text" placeholder="Search">
       <button class="search_button" type="button">Search</button>
     </div>
+    <div class="results">
+      <ul class="movies_list">
+
+      </ul>
+    </div>
     <!-- /searchbar -->
     <!-- handlebars template -->
-    <script id="entry-template" type="text/x-handlebars-template">
-      <!-- 1 Titolo
-      2 titolo Originale
-      3 Lingua
-      4 voto -->
-
+    <script id="movie-template" type="text/x-handlebars-template">
+      <li>{{title}} - {{original_title}} - {{original_language}} - {{vote_average}}</li>
     </script>
     <!-- /handlebars template -->
     <!-- script js -->

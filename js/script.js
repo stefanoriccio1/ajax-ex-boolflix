@@ -24,17 +24,38 @@ $(document).ready(function(){
 //     },
 
 $.ajax( {
-url: "https://api.themoviedb.org/3/search/movie", method: "GET",
-data: {
-api_key: 'bed1a6ff22823f98181f2f55bd6f37ae',
-query: 'the gladiator'
-},
-success: function (data, stato) {
-  console.log(data.results);
- },
+  url: "https://api.themoviedb.org/3/search/movie",   method: "GET",
+  data: {
+    api_key: 'bed1a6ff22823f98181f2f55bd6f37ae',
+    query: 'the gladiator'
+  },
+  success: function (data) {
+    printData(data);
+  },
 
-error: function (richiesta, stato, errori) { alert("E' avvenuto un errore. " + errore);
-} }
-);
+  error: function (request, state, error) {
+    alert("E' avvenuto un errore. " + error);
+    console.log(error);
+  }
+});
 
+// FUNCTIONS ------------------>
+function printData(data){
+
+  var movie_data = data.results;
+  var source = $("#movie-template").html()
+  var template = Handlebars.compile(source);
+
+  for (var i = 0; i < movie_data.length; i++) {
+    console.log(movie_data[i]);
+    var context = {
+      title: movie_data[i].title,
+      original_title: movie_data[i].original_title,
+      original_language: movie_data[i].original_language,
+      vote_average: movie_data[i].vote_average
+    }
+    var html = template(context);
+    $('.movies_list').append(html);
+  }
+}
 });
