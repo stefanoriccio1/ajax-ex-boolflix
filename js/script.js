@@ -1,50 +1,42 @@
 // bed1a6ff22823f98181f2f55bd6f37ae
 $(document).ready(function(){
-// risultato chiamata (singolo oggetto)
-// {
-//         "popularity": 2.177,
-//         "id": 114657,
-//         "video": false,
-//         "vote_count": 3,
-//         "vote_average": 6.7,
-//         "title": "The Gladiator",
-//         "release_date": "1986-02-03",
-//         "original_language": "en",
-//         "original_title": "The Gladiator",
-//         "genre_ids": [
-//             53,
-//             28,
-//             18,
-//             10770
-//         ],
-//         "backdrop_path": "/zpPhUVOuelvwgyYy5AqS9qAP0Ei.jpg",
-//         "adult": false,
-//         "overview": "A road warrior vigilante avenges his brother's death at the hands of a crazy motorist by using his souped-up pickup to apprehend drunken drivers and others who abuse their driving privileges.",
-//         "poster_path": "/asLJl7huJVgoXeca8aAlmywU9YQ.jpg"
-//     },
+  // $.ajax( {
+  //   url: "https://api.themoviedb.org/3/search/movie",   method: "GET",
+  //   data: {
+  //     api_key: 'bed1a6ff22823f98181f2f55bd6f37ae',
+  //     query: 'the gladiator'
+  //   },
+  //   success: function (data) {
+  //     printData(data);
+  //   },
+  //   error: function (request, state, error) {
+  //     alert("E' avvenuto un errore. " + error);
+  //     console.log(error);
+  //   }
+  // });
 
-$.ajax( {
-  url: "https://api.themoviedb.org/3/search/movie",   method: "GET",
-  data: {
-    api_key: 'bed1a6ff22823f98181f2f55bd6f37ae',
-    query: 'the gladiator'
-  },
-  success: function (data) {
-    printData(data);
-  },
-  error: function (request, state, error) {
-    alert("E' avvenuto un errore. " + error);
-    console.log(error);
-  }
-});
+  // prnedo il value dalla searbar al click
+  $(document).on('click', 'button', function(){
+    var input_value = $('.search_input').val();
 
-// prnedo il value dalla searbar al click
-$(document).on('click', 'button', function(){
-  var input_value = $('.search_input').val();
+    $.ajax( {
+      url: "https://api.themoviedb.org/3/search/movie",   method: "GET",
+      data: {
+        api_key: 'bed1a6ff22823f98181f2f55bd6f37ae',
+        query: input_value
+      },
+      success: function (data) {
+        printData(data);
+      },
+      error: function (request, state, error) {
+        alert("E' avvenuto un errore. " + error);
+        console.log(error);
+      }
+    });
 
-  console.log(input_value);
-  
-  $('.search_input').val('');
+    $('.search_input').val('');
+    $('.movies_list').text('');
+  });
 });
 
 // FUNCTIONS ------------------>
@@ -64,5 +56,4 @@ function printData(movie){
     var html = template(context);
     $('.movies_list').append(html);
   }
-}
-});
+};
