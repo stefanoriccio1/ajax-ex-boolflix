@@ -40,7 +40,11 @@ $.ajax( {
 
 // prnedo il value dalla searbar al click
 $(document).on('click', 'button', function(){
-  console.log('ciao');
+  var input_value = $('.search_input').val();
+
+  console.log(input_value);
+  
+  $('.search_input').val('');
 });
 
 // FUNCTIONS ------------------>
