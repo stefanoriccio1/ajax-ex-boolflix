@@ -59,7 +59,14 @@ function getMovies(string){
       language: 'it-IT'
     },
     success: function (data) {
-      printData(data);
+      if (data.total_results > 0){
+        printData(data);
+      }
+      else{
+        resetSearch('.search_input', '.movies_list')
+        printNoResults(data);
+      }
+
     },
     error: function (request, state, error) {
       alert("E' avvenuto un errore. " + error);
@@ -67,7 +74,17 @@ function getMovies(string){
     }
   });
 };
-// funcione per cancellare i campi
+// funzione per no results nella chiamata
+function printNoResults(data){
+  var movie_data = data.results;
+  var source = $("#no-results-template").html()
+  var template = Handlebars.compile(source);
+
+  var html = template();
+  $('.movies_list').append(html);
+
+}
+// funzione per cancellare i campi
 
 function resetSearch (input, container){
 
