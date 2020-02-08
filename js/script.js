@@ -27,18 +27,9 @@ function printData(movie){
       original_title: movie_data[i].original_title,
       original_language: movie_data[i].original_language,
       vote_average: Math.round((movie_data[i].vote_average/2))
-    }
+    };
     var voto = movie_data[i].vote_average;
-    console.log(voto);
-    if (voto < 2){
-      var context ={
-        starOne: 'fas fa-star',
-        starTwo: 'far fa-star',
-        starThree: 'far fa-star',
-        starFour: 'far fa-star',
-        starFive: 'far fa-star'
-      }
-    }
+
     var html = template(context);
     $('.movies_list').append(html);
   }
@@ -86,3 +77,30 @@ function resetSearch (input, container){
   $(input).val('');
   $(container).html('');
 }
+
+// funzione per calcolare i voti e stampare stelline
+function printStars(num){
+  var voto = Math.round((num/2))
+  var source = $("#no-results-template").html()
+  var template = Handlebars.compile(source);
+
+  if (voto < 2){
+    var context ={
+      starOne: 'fas fa-star',
+      starTwo: 'far fa-star',
+      starThree: 'far fa-star',
+      starFour: 'far fa-star',
+      starFive: 'far fa-star'
+    };
+    var html = template(context);
+    $('.movies_list').append(context);
+  }
+  // else if (num > 2 && num <=4) {
+  //   var context ={
+  //     starOne: 'fas fa-star',
+  //     starTwo: 'fas fa-star',
+  //     starThree: 'far fa-star',
+  //     starFour: 'far fa-star',
+  //     starFive: 'far fa-star'
+  //   };
+  };
