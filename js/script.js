@@ -34,7 +34,7 @@ function printData(movie){
       original_language: movie_data[i].original_language,
       vote_average: vote,
       src: 'img/bandiera-'+language+'.png',
-      stars: 
+      stars: printStars(vote)
     };
 
 
@@ -88,5 +88,15 @@ function resetSearch (input, container){
 
 // funzione per trasfromare voti in stelle
 function printStars (num){
-
+ for (var i = 0; i < 5; i++) {
+   var risultato =''
+   if (i < num){
+     var risultato = '<i class="fas fa-star"></i>';
+   }
+   else{
+     var risultato = '<i class="far fa-star"></i>';
+   }
+   console.log(risultato);
+   return risultato
+ };
 };
