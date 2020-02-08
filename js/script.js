@@ -26,7 +26,18 @@ function printData(movie){
       title: movie_data[i].title,
       original_title: movie_data[i].original_title,
       original_language: movie_data[i].original_language,
-      vote_average: movie_data[i].vote_average
+      vote_average: Math.round((movie_data[i].vote_average/2))
+    }
+    var voto = movie_data[i].vote_average;
+    console.log(voto);
+    if (voto < 2){
+      var context ={
+        starOne: 'fas fa-star',
+        starTwo: 'far fa-star',
+        starThree: 'far fa-star',
+        starFour: 'far fa-star',
+        starFive: 'far fa-star'
+      }
     }
     var html = template(context);
     $('.movies_list').append(html);
