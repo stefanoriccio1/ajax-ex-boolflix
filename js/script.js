@@ -1,21 +1,7 @@
 // bed1a6ff22823f98181f2f55bd6f37ae
 $(document).ready(function(){
-  // $.ajax( {
-  //   url: "https://api.themoviedb.org/3/search/movie",   method: "GET",
-  //   data: {
-  //     api_key: 'bed1a6ff22823f98181f2f55bd6f37ae',
-  //     query: 'the gladiator'
-  //   },
-  //   success: function (data) {
-  //     printData(data);
-  //   },
-  //   error: function (request, state, error) {
-  //     alert("E' avvenuto un errore. " + error);
-  //     console.log(error);
-  //   }
-  // });
 
-  // prnedo il value dalla searbar al click
+  // prendo il value dalla searbar al click
   $(document).on('click', 'button', function(){
     var input_value = $('.search_input').val();
     var movie_list = $('.movies_list');
@@ -24,8 +10,6 @@ $(document).ready(function(){
 
     resetSearch('.search_input', movie_list)
 
-    // $('.search_input').val('');
-    // $('.movies_list').text('');
   });
 });
 
