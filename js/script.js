@@ -27,8 +27,9 @@ function printData(movie){
       title: movie_data[i].title,
       original_title: movie_data[i].original_title,
       original_language: movie_data[i].original_language,
-      vote_average:printStars(Math.round((movie_data[i].vote_average/2)))
+      vote_average:Math.round((movie_data[i].vote_average/2))
     };
+  
 
     var html = template(context);
     $('.movies_list').append(html);
@@ -80,15 +81,7 @@ function resetSearch (input, container){
 
 // funzione per trasfromare voti in stelle
 function printStars (num){
-  var somma = '';
+ if(num < 2){
 
-  for (var i = 0; i < num; i++) {
-    if ( i < num) {
-     var result = '<i class="fas fa-star"></i>';
-   } else {
-     var result = '<i class="far fa-star"></i>';
-   }
-   somma += result;
-  }
-  return somma;
+ }
 };
