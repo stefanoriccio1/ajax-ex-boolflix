@@ -28,10 +28,8 @@ function printData(movie){
       original_title: movie_data[i].original_title,
       original_language: movie_data[i].original_language,
       vote_average:Math.round((movie_data[i].vote_average/2)),
-      src: 'img/bandiera-'+lenguage+'.png'
+      src: 'img/bandiera-'+movie_data[i].original_language+'.png'
     };
-    var lenguage =movie_data[i].original_language;
-    console.log(lenguage);
 
     var html = template(context);
     $('.movies_list').append(html);
@@ -83,7 +81,5 @@ function resetSearch (input, container){
 
 // funzione per trasfromare voti in stelle
 function printStars (num){
- if(num < 2){
 
- }
 };
