@@ -8,7 +8,10 @@ $(document).ready(function(){
 
     getMovies(input_value);
 
-    resetSearch('.search_input', movie_list)
+    resetSearch('.search_input', movie_list);
+
+    // printStars($('.vote'));
+    console.log($('.movie_property:last-child').attr());
 
   });
 });
@@ -28,7 +31,6 @@ function printData(movie){
       original_language: movie_data[i].original_language,
       vote_average: Math.round((movie_data[i].vote_average/2))
     };
-    var voto = movie_data[i].vote_average;
 
     var html = template(context);
     $('.movies_list').append(html);
@@ -78,29 +80,22 @@ function resetSearch (input, container){
   $(container).html('');
 }
 
-// funzione per calcolare i voti e stampare stelline
-function printStars(num){
-  var voto = Math.round((num/2))
-  var source = $("#no-results-template").html()
+// funzione per trasfromare voti in stelle
+function printStars (num){
+  var source = $("#movie-template").html()
   var template = Handlebars.compile(source);
+  var voto = parseInt(num);
+ if (voto < 2){
 
-  if (voto < 2){
-    var context ={
-      starOne: 'fas fa-star',
-      starTwo: 'far fa-star',
-      starThree: 'far fa-star',
-      starFour: 'far fa-star',
-      starFive: 'far fa-star'
-    };
-    var html = template(context);
-    $('.movies_list').append(context);
-  }
-  // else if (num > 2 && num <=4) {
-  //   var context ={
-  //     starOne: 'fas fa-star',
-  //     starTwo: 'fas fa-star',
-  //     starThree: 'far fa-star',
-  //     starFour: 'far fa-star',
-  //     starFive: 'far fa-star'
-  //   };
-  };
+   var context = {
+   starOne: 'fas fa-star',
+   starTwo: 'far fa-star',
+   starThree:'far fa-star',
+   starFour:'far fa-star',
+   starsFive:'far fa-star'
+ };
+
+ var html = template(context);
+
+ }
+}
