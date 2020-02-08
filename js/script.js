@@ -23,13 +23,18 @@ function printData(movie){
   var template = Handlebars.compile(source);
 
   for (var i = 0; i < movie_data.length; i++) {
+    var language = movie_data[i].original_language;
+    if (language != 'it' && language != 'en' && language != 'fr'){
+      language=''
+    };
     var context = {
       title: movie_data[i].title,
       original_title: movie_data[i].original_title,
       original_language: movie_data[i].original_language,
       vote_average:Math.round((movie_data[i].vote_average/2)),
-      src: 'img/bandiera-'+movie_data[i].original_language+'.png'
+      src: 'img/bandiera-'+language+'.png'
     };
+    
 
     var html = template(context);
     $('.movies_list').append(html);
