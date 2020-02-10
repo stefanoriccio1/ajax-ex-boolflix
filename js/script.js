@@ -134,9 +134,9 @@ function printStars (num){
 };
 // funzione per stampare le copertine
 function printPoster(playbill){
-  var string=''
+  var string='https://image.tmdb.org/t/p/w185'
   if (playbill != null){
-    string = 'https://image.tmdb.org/t/p/w185'+playbill+'';
+    string += playbill;
   }
   else{
     string ='img/not_found_2.jpg';
