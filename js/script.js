@@ -7,6 +7,7 @@ $(document).ready(function(){
     var movie_list = $('.movies_list');
 
     getMovies(input_value);
+    getTvSeries(input_value);
 
     resetSearch('.search_input', movie_list);
 
@@ -76,6 +77,31 @@ function printNoResults(data){
   $('.movies_list').append(html);
 
 }
+// funzione per chiamare serie TV
+function getTvSeries(string){
+  $.ajax( {
+    url: "https://api.themoviedb.org/3/search/tv",   method: "GET",
+    data: {
+      api_key: 'bed1a6ff22823f98181f2f55bd6f37ae',
+      query: string,
+      language: 'it-IT'
+    },
+    success: function (data) {
+      if (data.total_results > 0){
+        printTveSeries(data);
+      }
+      else{
+        resetSearch('.search_input', '.movies_list')
+        printNoResults(data);
+      }
+
+    },
+    error: function (request, state, error) {
+      alert("E' avvenuto un errore. " + error);
+      console.log(error);
+    }
+  });
+};
 // funzione per cancellare i campi
 
 function resetSearch (input, container){
@@ -100,4 +126,30 @@ function printStars (num){
    }
  };
  return result
+};
+
+// funzione che stampa le serieTv
+function printTveSeries(tv){
+
+  var tv_data = tv.results;
+  var source = $("#movie-template").html()
+  var template = Handlebars.compile(source);
+
+  for (var i = 0; i < tv_data.length; i++) {
+    var language = tv_data[i].original_language;
+    if (language != 'it' && language != 'en' && language != 'fr'){
+      language=''
+    };
+    var context = {
+      title: tv_data[i].name,
+      original_title: tv_data[i].original_name,
+      original_language: tv_data[i].original_language,
+      vote_average: printStars(tv_data[i].vote_average),
+      src: 'img/bandiera-'+language+'.png',
+    };
+
+
+    var html = template(context);
+    $('.movies_list').append(html);
+  }
 };
