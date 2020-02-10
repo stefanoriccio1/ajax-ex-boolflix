@@ -139,7 +139,7 @@ function printPoster(playbill){
     string = 'https://image.tmdb.org/t/p/w185'+playbill+'';
   }
   else{
-    string ='img/no_available.jpg';
+    string ='img/not_found_2.jpg';
   }
   return string
 }
@@ -150,11 +150,11 @@ function printTveSeries(tv){
   var tv_data = tv.results;
   var source = $("#movie-template").html()
   var template = Handlebars.compile(source);
-  var poster = tv_data[i].poster_path;
+
 
   for (var i = 0; i < tv_data.length; i++) {
+    var poster = tv_data[i].poster_path;
     var language = tv_data[i].original_language;
-
     if (language != 'it' && language != 'en' && language != 'fr'){
       language=''
     };
@@ -164,8 +164,7 @@ function printTveSeries(tv){
       original_language: tv_data[i].original_language,
       vote_average: printStars(tv_data[i].vote_average),
       src: 'img/bandiera-'+language+'.png',
-      poster_path:printPoster(poster)
-
+      poster_path: printPoster(poster)
     };
     var html = template(context);
     $('.tv_series_list').append(html);
