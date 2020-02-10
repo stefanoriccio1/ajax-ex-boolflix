@@ -32,9 +32,8 @@ function printData(movie){
       title: movie_data[i].title,
       original_title: movie_data[i].original_title,
       original_language: movie_data[i].original_language,
-      vote_average: vote,
+      vote_average: printStars(vote),
       src: 'img/bandiera-'+language+'.png',
-      stars: printStars(vote)
     };
 
 
@@ -88,13 +87,13 @@ function resetSearch (input, container){
 
 // funzione per trasfromare voti in stelle
 function printStars (num){
- for (var i = 0; i < 5; i++) {
+ for (var i = 1; i <= 5; i++) {
    if (i < num){
      var risultato = '<i class="fas fa-star"></i>';
    }
    else{
      var risultato = '<i class="far fa-star"></i>';
    }
-   console.log(risultato);
+   return risultato;
  };
 };
