@@ -24,6 +24,7 @@ function printData(movie){
   var source = $("#movie-template").html()
   var template = Handlebars.compile(source);
 
+
   for (var i = 0; i < movie_data.length; i++) {
     var language = movie_data[i].original_language;
     if (language != 'it' && language != 'en' && language != 'fr'){
@@ -35,6 +36,7 @@ function printData(movie){
       original_language: movie_data[i].original_language,
       vote_average: printStars(movie_data[i].vote_average),
       src: 'img/bandiera-'+language+'.png',
+      poster_path:'https://image.tmdb.org/t/p/w185/s2VDcsMh9ZhjFUxw77uCFDpTuXp.jpg'
     };
 
 
@@ -116,7 +118,6 @@ function resetSearch (input, container, container2){
 // funzione per trasfromare voti in stelle
 function printStars (num){
   var vote = Math.ceil(num/2);
-  console.log(vote);
   var result ="";
 
  for (var i = 1; i <= 5; i++) {
