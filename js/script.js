@@ -5,11 +5,12 @@ $(document).ready(function(){
   $(document).on('click', 'button', function(){
     var input_value = $('.search_input').val();
     var movie_list = $('.movies_list');
+    var tv_series_list = $('.tv_series_list');
 
     getMovies(input_value);
     getTvSeries(input_value);
 
-    resetSearch('.search_input', movie_list);
+    resetSearch('.search_input', movie_list, tv_series_list);
 
   });
 
@@ -75,6 +76,7 @@ function printNoResults(data){
 
   var html = template();
   $('.movies_list').append(html);
+  $('.tv_series_list').append(html);
 
 }
 // funzione per chiamare serie TV
@@ -91,7 +93,7 @@ function getTvSeries(string){
         printTveSeries(data);
       }
       else{
-        resetSearch('.search_input', '.movies_list')
+        resetSearch('.search_input', '.tv_series_list')
         printNoResults(data);
       }
 
@@ -104,10 +106,11 @@ function getTvSeries(string){
 };
 // funzione per cancellare i campi
 
-function resetSearch (input, container){
+function resetSearch (input, container, container2){
 
   $(input).val('');
   $(container).html('');
+  $(container2).html('')
 }
 
 // funzione per trasfromare voti in stelle
@@ -150,6 +153,6 @@ function printTveSeries(tv){
 
 
     var html = template(context);
-    $('.movies_list').append(html);
+    $('.tv_series_list').append(html);
   }
 };

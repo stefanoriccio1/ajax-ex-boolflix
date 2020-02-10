@@ -17,13 +17,20 @@
       <button class="search_button" type="button">Search</button>
     </div>
     <div class="results">
+      <h2>Movies</h2>
       <ul class="movies_list">
+
+      </ul>
+    </div>
+    <div class="results">
+      <h2>Tv Series</h2>
+      <ul class="tv_series_list">
 
       </ul>
     </div>
     <!-- /searchbar -->
     <!-- handlebars template -->
-    <!-- tmplate per lista dischi -->
+    <!-- tmplate per lista film -->
     <script id="movie-template" type="text/x-handlebars-template">
       <li>
         {{title}}
@@ -34,7 +41,7 @@
         </ul>
       </li>
     </script>
-    <!-- /tmplate per lista dischi -->
+    <!-- /tmplate per lista film -->
     <!-- template per quando la ricerca non produce risultati -->
     <script id="no-results-template" type="text/x-handlebars-template">
       <li>
