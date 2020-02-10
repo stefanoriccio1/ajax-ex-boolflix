@@ -92,7 +92,7 @@ function printStars (num){
 
  for (var i = 1; i <= 5; i++) {
 
-   if (i <= num){
+   if (i <= vote){
      result += '<i class="fas fa-star"></i>';
    }
    else{
