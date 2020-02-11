@@ -60,7 +60,7 @@ function printResults(type, results){
     };
     var context = {
       type: thisResult.type,
-      title: thisResult.title,
+      title: title,
       original_title: originalTitle,
       original_language: thisResult.original_language,
       vote_average: printStars(thisResult.vote_average),

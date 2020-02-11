@@ -22,6 +22,8 @@ ul li img{
 }
 h2{
   margin-bottom: 20px;
+  color: white;
+  font-size: 25px;
 }
 .hidden{
   display: none;
@@ -33,6 +35,14 @@ h2{
   background-color: black;
   height: 80px;
   padding: 20px 15px 1px 15px;
+}
+.search_input {
+  height: 25px;
+  width: 150px;
+  border-radius: 3px;
+}
+.search_button{
+  display: none;
 }
 /* logo */
 .logo{
@@ -57,8 +67,9 @@ h2{
   justify-content: flex-start;
 }
 .poster{
-  height: 520px;
   width: 342px;
+  height: 520px;
+  border: 3px solid lightgrey;
 }
 .container{
   height: calc(100vh - 80px);
@@ -67,11 +78,14 @@ h2{
 }
 .flag{
   width: 20px;
+  margin: 2px;
+  vertical-align: middle;
+  line-height: 5px;
 }
 .image{
   position: relative;
-  margin: 40px;
   width: 342px;
+  margin: 40px;
 }
 .fa-star{
   color: yellow;
