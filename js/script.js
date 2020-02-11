@@ -6,9 +6,17 @@ $(document).ready(function(){
     var input_value = $('.search_input').val();
     var movie_list = $('.movies_list');
     var tv_series_list = $('.tv_series_list');
+    var api_key = 'bed1a6ff22823f98181f2f55bd6f37ae';
+    var urlMovies = "https://api.themoviedb.org/3/search/movie";
+    var urlTvSeries = "https://api.themoviedb.org/3/search/tv";
+    var typeMovie = 'film';
+    var typeTvSeries = 'tv';
 
-    getMovies(input_value);
-    getTvSeries(input_value);
+    getData(input_value, api_key, urlMovies, typeMovie,'.movie_list');
+    getData(input_value, api_key, urlTvSeries, typeTvSeries, '.tv_series_list');
+
+    // getMovies(input_value);
+    // getTvSeries(input_value);
 
     resetSearch('.search_input', movie_list, tv_series_list);
 
@@ -121,6 +129,34 @@ function getTvSeries(string){
       console.log(error);
     }
   });
+};
+
+// funzione chiamata Ajax
+function getData(string, api_key, url, type, container){
+    $.ajax( {
+      url: url,
+      method: "GET",
+      data: {
+        api_key: api_key,
+        query: string,
+        language: 'it-IT'
+      },
+      success: function (data) {
+        if (data.total_results > 0){
+          var results = data.results;
+          printResults(type, results);
+        }
+        else{
+          resetSearch('.search_input', container)
+          printNoResults(data);
+        }
+
+      },
+      error: function (request, state, error) {
+        alert("E' avvenuto un errore. " + error);
+        console.log(error);
+      }
+    });
 };
 
 // funzione per cancellare i campi
