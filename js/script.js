@@ -170,3 +170,31 @@ function printTveSeries(tv){
     $('.tv_series_list').append(html);
   }
 };
+
+// funzione di print generica
+
+function printResults(tv){
+
+  var tv_data = tv.results;
+  var source = $("#movie-template").html()
+  var template = Handlebars.compile(source);
+
+
+  for (var i = 0; i < tv_data.length; i++) {
+    var poster = tv_data[i].poster_path;
+    var language = tv_data[i].original_language;
+    if (language != 'it' && language != 'en' && language != 'fr'){
+      language=''
+    };
+    var context = {
+      title: tv_data[i].name,
+      original_title: tv_data[i].original_name,
+      original_language: tv_data[i].original_language,
+      vote_average: printStars(tv_data[i].vote_average),
+      src: 'img/bandiera-'+language+'.png',
+      poster_path: printPoster(poster)
+    };
+    var html = template(context);
+    $('.tv_series_list').append(html);
+  }
+};
