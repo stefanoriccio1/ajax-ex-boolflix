@@ -17,34 +17,6 @@ $(document).ready(function(){
 });
 
 // FUNCTIONS ------------------>
-// funzione che stampa i film
-function printData(movie){
-
-  var movie_data = movie.results;
-  var source = $("#movie-template").html()
-  var template = Handlebars.compile(source);
-
-
-  for (var i = 0; i < movie_data.length; i++) {
-    var language = movie_data[i].original_language;
-    var poster = movie_data[i].poster_path;
-
-    if (language != 'it' && language != 'en' && language != 'fr'){
-      language=''
-    };
-    var context = {
-      title: movie_data[i].title,
-      original_title: movie_data[i].original_title,
-      original_language: movie_data[i].original_language,
-      vote_average: printStars(movie_data[i].vote_average),
-      src: 'img/bandiera-'+language+'.png',
-      poster_path:printPoster(poster)
-    };
-
-    var html = template(context);
-    $('.movies_list').append(html);
-  }
-};
 
 // funzione che fa chiamata ajax
 function getMovies(string){
@@ -56,8 +28,9 @@ function getMovies(string){
       language: 'it-IT'
     },
     success: function (data) {
+      var film = data.results;
       if (data.total_results > 0){
-        printData(data);
+        printResults('film', film);
       }
       else{
         resetSearch('.search_input', '.movies_list')
@@ -93,7 +66,8 @@ function getTvSeries(string){
     },
     success: function (data) {
       if (data.total_results > 0){
-        printTveSeries(data);
+        var tv = data.results;
+        printResults('tv', tv);
       }
       else{
         resetSearch('.search_input', '.tv_series_list')
@@ -107,8 +81,8 @@ function getTvSeries(string){
     }
   });
 };
-// funzione per cancellare i campi
 
+// funzione per cancellare i campi
 function resetSearch (input, container, container2){
 
   $(input).val('');
@@ -144,67 +118,100 @@ function printPoster(playbill){
   return string
 }
 
-// funzione che stampa le serieTv
-function printTveSeries(tv){
-
-  var tv_data = tv.results;
-  var source = $("#movie-template").html()
-  var template = Handlebars.compile(source);
-
-
-  for (var i = 0; i < tv_data.length; i++) {
-    var poster = tv_data[i].poster_path;
-    var language = tv_data[i].original_language;
-    if (language != 'it' && language != 'en' && language != 'fr'){
-      language=''
-    };
-    var context = {
-      title: tv_data[i].name,
-      original_title: tv_data[i].original_name,
-      original_language: tv_data[i].original_language,
-      vote_average: printStars(tv_data[i].vote_average),
-      src: 'img/bandiera-'+language+'.png',
-      poster_path: printPoster(poster)
-    };
-    var html = template(context);
-    $('.tv_series_list').append(html);
-  }
-};
-
 // funzione di print generica
-
 function printResults(type, results){
   var source = $("#movie-template").html()
   var template = Handlebars.compile(source);
   var title;
   var originalTitle;
+  console.log(results[i]);
 
   for (var i = 0; i < results.length; i++) {
     thisResult = results[i];
     if (type == 'film') {
       originalTitle = thisResult.original_title;
       title = thisResult.title;
+      var container = $('.movies_list');
     }
     else if (type == 'tv'){
       originalTitle = thisResult.original_name;
       title = thisResult.name;
+      var container = $('.tv_series_list');
     }
 
-
-    var poster = tv_data[i].poster_path;
-    var language = tv_data[i].original_language;
+    var poster = thisResult.poster_path;
+    var language = thisResult.original_language;
     if (language != 'it' && language != 'en' && language != 'fr'){
       language=''
     };
     var context = {
-      title: tv_data[i].name,
-      original_title: tv_data[i].original_name,
-      original_language: tv_data[i].original_language,
-      vote_average: printStars(tv_data[i].vote_average),
+      type: thisResult.type,
+      title: thisResult.name,
+      original_title: thisResult.original_name,
+      original_language: thisResult.original_language,
+      vote_average: printStars(thisResult.vote_average),
       src: 'img/bandiera-'+language+'.png',
       poster_path: printPoster(poster)
     };
     var html = template(context);
-    $('.tv_series_list').append(html);
+    container.append(html);
   }
 };
+
+// conservo vecchio lavoro------->
+
+// funzione che stampa le serieTv
+// function printTveSeries(tv){
+//
+//   var tv_data = tv.results;
+//   var source = $("#movie-template").html()
+//   var template = Handlebars.compile(source);
+//
+//
+//   for (var i = 0; i < tv_data.length; i++) {
+//     var poster = tv_data[i].poster_path;
+//     var language = tv_data[i].original_language;
+//     if (language != 'it' && language != 'en' && language != 'fr'){
+//       language=''
+//     };
+//     var context = {
+//       title: tv_data[i].name,
+//       original_title: tv_data[i].original_name,
+//       original_language: tv_data[i].original_language,
+//       vote_average: printStars(tv_data[i].vote_average),
+//       src: 'img/bandiera-'+language+'.png',
+//       poster_path: printPoster(poster)
+//     };
+//     var html = template(context);
+//     $('.tv_series_list').append(html);
+//   }
+// };
+
+// funzione che stampa i film
+// function printData(movie){
+//
+//   var movie_data = movie.results;
+//   var source = $("#movie-template").html()
+//   var template = Handlebars.compile(source);
+//
+//
+//   for (var i = 0; i < movie_data.length; i++) {
+//     var language = movie_data[i].original_language;
+//     var poster = movie_data[i].poster_path;
+//
+//     if (language != 'it' && language != 'en' && language != 'fr'){
+//       language=''
+//     };
+//     var context = {
+//       title: movie_data[i].title,
+//       original_title: movie_data[i].original_title,
+//       original_language: movie_data[i].original_language,
+//       vote_average: printStars(movie_data[i].vote_average),
+//       src: 'img/bandiera-'+language+'.png',
+//       poster_path:printPoster(poster)
+//     };
+//
+//     var html = template(context);
+//     $('.movies_list').append(html);
+//   }
+// };
