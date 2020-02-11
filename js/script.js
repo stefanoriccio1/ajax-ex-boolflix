@@ -15,13 +15,13 @@ $(document).ready(function(){
     getData(input_value, api_key, urlMovies, typeMovie,'.movie_list');
     getData(input_value, api_key, urlTvSeries, typeTvSeries, '.tv_series_list');
 
-    // getMovies(input_value);
-    // getTvSeries(input_value);
-
     resetSearch('.search_input', movie_list, tv_series_list);
 
   });
 
+  $('.search_input').keypress(function(event){
+   console.log(alert('ehy'));
+  });
 });
 
 // FUNCTIONS ------------------>
@@ -65,33 +65,6 @@ function printResults(type, results){
   }
 };
 
-// funzione che fa chiamata ajax per i film
-function getMovies(string){
-  $.ajax( {
-    url: "https://api.themoviedb.org/3/search/movie",   method: "GET",
-    data: {
-      api_key: 'bed1a6ff22823f98181f2f55bd6f37ae',
-      query: string,
-      language: 'it-IT'
-    },
-    success: function (data) {
-      var film = data.results;
-      if (data.total_results > 0){
-        printResults('film', film);
-      }
-      else{
-        resetSearch('.search_input', '.movies_list')
-        printNoResults(data);
-      }
-
-    },
-    error: function (request, state, error) {
-      alert("E' avvenuto un errore. " + error);
-      console.log(error);
-    }
-  });
-};
-
 // funzione per no results nella chiamata
 function printNoResults(data){
   var movie_data = data.results;
@@ -103,33 +76,6 @@ function printNoResults(data){
   $('.tv_series_list').append(html);
 
 }
-
-// funzione per chiamare serie TV
-function getTvSeries(string){
-  $.ajax( {
-    url: "https://api.themoviedb.org/3/search/tv",   method: "GET",
-    data: {
-      api_key: 'bed1a6ff22823f98181f2f55bd6f37ae',
-      query: string,
-      language: 'it-IT'
-    },
-    success: function (data) {
-      if (data.total_results > 0){
-        var tv = data.results;
-        printResults('tv', tv);
-      }
-      else{
-        resetSearch('.search_input', '.tv_series_list')
-        printNoResults(data);
-      }
-
-    },
-    error: function (request, state, error) {
-      alert("E' avvenuto un errore. " + error);
-      console.log(error);
-    }
-  });
-};
 
 // funzione chiamata Ajax
 function getData(string, api_key, url, type, container){
@@ -251,4 +197,58 @@ function printPoster(playbill){
 //     var html = template(context);
 //     $('.movies_list').append(html);
 //   }
+// };
+
+// funzione che fa chiamata ajax per i film
+// function getMovies(string){
+//   $.ajax( {
+//     url: "https://api.themoviedb.org/3/search/movie",   method: "GET",
+//     data: {
+//       api_key: 'bed1a6ff22823f98181f2f55bd6f37ae',
+//       query: string,
+//       language: 'it-IT'
+//     },
+//     success: function (data) {
+//       var film = data.results;
+//       if (data.total_results > 0){
+//         printResults('film', film);
+//       }
+//       else{
+//         resetSearch('.search_input', '.movies_list')
+//         printNoResults(data);
+//       }
+//
+//     },
+//     error: function (request, state, error) {
+//       alert("E' avvenuto un errore. " + error);
+//       console.log(error);
+//     }
+//   });
+// };
+
+// funzione per chiamare serie TV
+// function getTvSeries(string){
+//   $.ajax( {
+//     url: "https://api.themoviedb.org/3/search/tv",   method: "GET",
+//     data: {
+//       api_key: 'bed1a6ff22823f98181f2f55bd6f37ae',
+//       query: string,
+//       language: 'it-IT'
+//     },
+//     success: function (data) {
+//       if (data.total_results > 0){
+//         var tv = data.results;
+//         printResults('tv', tv);
+//       }
+//       else{
+//         resetSearch('.search_input', '.tv_series_list')
+//         printNoResults(data);
+//       }
+//
+//     },
+//     error: function (request, state, error) {
+//       alert("E' avvenuto un errore. " + error);
+//       console.log(error);
+//     }
+//   });
 // };
