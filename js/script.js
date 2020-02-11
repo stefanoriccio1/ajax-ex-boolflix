@@ -18,113 +18,12 @@ $(document).ready(function(){
 
 // FUNCTIONS ------------------>
 
-// funzione che fa chiamata ajax
-function getMovies(string){
-  $.ajax( {
-    url: "https://api.themoviedb.org/3/search/movie",   method: "GET",
-    data: {
-      api_key: 'bed1a6ff22823f98181f2f55bd6f37ae',
-      query: string,
-      language: 'it-IT'
-    },
-    success: function (data) {
-      var film = data.results;
-      if (data.total_results > 0){
-        printResults('film', film);
-      }
-      else{
-        resetSearch('.search_input', '.movies_list')
-        printNoResults(data);
-      }
-
-    },
-    error: function (request, state, error) {
-      alert("E' avvenuto un errore. " + error);
-      console.log(error);
-    }
-  });
-};
-// funzione per no results nella chiamata
-function printNoResults(data){
-  var movie_data = data.results;
-  var source = $("#no-results-template").html()
-  var template = Handlebars.compile(source);
-
-  var html = template();
-  $('.movies_list').append(html);
-  $('.tv_series_list').append(html);
-
-}
-// funzione per chiamare serie TV
-function getTvSeries(string){
-  $.ajax( {
-    url: "https://api.themoviedb.org/3/search/tv",   method: "GET",
-    data: {
-      api_key: 'bed1a6ff22823f98181f2f55bd6f37ae',
-      query: string,
-      language: 'it-IT'
-    },
-    success: function (data) {
-      if (data.total_results > 0){
-        var tv = data.results;
-        printResults('tv', tv);
-      }
-      else{
-        resetSearch('.search_input', '.tv_series_list')
-        printNoResults(data);
-      }
-
-    },
-    error: function (request, state, error) {
-      alert("E' avvenuto un errore. " + error);
-      console.log(error);
-    }
-  });
-};
-
-// funzione per cancellare i campi
-function resetSearch (input, container, container2){
-
-  $(input).val('');
-  $(container).html('');
-  $(container2).html('')
-}
-
-// funzione per trasfromare voti in stelle
-function printStars (num){
-  var vote = Math.ceil(num/2);
-  var result ="";
-
- for (var i = 1; i <= 5; i++) {
-
-   if (i <= vote){
-     result += '<i class="fas fa-star"></i>';
-   }
-   else{
-    result += '<i class="far fa-star"></i>';
-   }
- };
- return result
-};
-// funzione per stampare le copertine
-function printPoster(playbill){
-  var string='https://image.tmdb.org/t/p/w185'
-  if (playbill != null){
-    string += playbill;
-  }
-  else{
-    string ='img/not_found_2.jpg';
-  }
-  return string
-}
-
 // funzione di print generica
 function printResults(type, results){
   var source = $("#movie-template").html()
   var template = Handlebars.compile(source);
   var title;
   var originalTitle;
-  console.log(results[i]);
 
   for (var i = 0; i < results.length; i++) {
     thisResult = results[i];
@@ -157,6 +56,108 @@ function printResults(type, results){
     container.append(html);
   }
 };
+
+// funzione che fa chiamata ajax per i film
+function getMovies(string){
+  $.ajax( {
+    url: "https://api.themoviedb.org/3/search/movie",   method: "GET",
+    data: {
+      api_key: 'bed1a6ff22823f98181f2f55bd6f37ae',
+      query: string,
+      language: 'it-IT'
+    },
+    success: function (data) {
+      var film = data.results;
+      if (data.total_results > 0){
+        printResults('film', film);
+      }
+      else{
+        resetSearch('.search_input', '.movies_list')
+        printNoResults(data);
+      }
+
+    },
+    error: function (request, state, error) {
+      alert("E' avvenuto un errore. " + error);
+      console.log(error);
+    }
+  });
+};
+
+// funzione per no results nella chiamata
+function printNoResults(data){
+  var movie_data = data.results;
+  var source = $("#no-results-template").html()
+  var template = Handlebars.compile(source);
+
+  var html = template();
+  $('.movies_list').append(html);
+  $('.tv_series_list').append(html);
+
+}
+
+// funzione per chiamare serie TV
+function getTvSeries(string){
+  $.ajax( {
+    url: "https://api.themoviedb.org/3/search/tv",   method: "GET",
+    data: {
+      api_key: 'bed1a6ff22823f98181f2f55bd6f37ae',
+      query: string,
+      language: 'it-IT'
+    },
+    success: function (data) {
+      if (data.total_results > 0){
+        var tv = data.results;
+        printResults('tv', tv);
+      }
+      else{
+        resetSearch('.search_input', '.tv_series_list')
+        printNoResults(data);
+      }
+
+    },
+    error: function (request, state, error) {
+      alert("E' avvenuto un errore. " + error);
+      console.log(error);
+    }
+  });
+};
+
+// funzione per cancellare i campi
+function resetSearch (input, container, container2){
+  $(input).val('');
+  $(container).html('');
+  $(container2).html('')
+}
+
+// funzione per trasfromare voti in stelle
+function printStars (num){
+  var vote = Math.ceil(num/2);
+  var result ="";
+
+ for (var i = 1; i <= 5; i++) {
+   if (i <= vote){
+     result += '<i class="fas fa-star"></i>';
+   }
+   else{
+    result += '<i class="far fa-star"></i>';
+   }
+ };
+ return result
+};
+
+// funzione per stampare le copertine
+function printPoster(playbill){
+  var string='https://image.tmdb.org/t/p/w185'
+  if (playbill != null){
+    string += playbill;
+  }
+  else{
+    string ='img/not_found_2.jpg';
+  }
+  return string
+}
+
 
 // conservo vecchio lavoro------->
 
