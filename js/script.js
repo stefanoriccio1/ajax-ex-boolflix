@@ -61,7 +61,7 @@ function printResults(type, results){
     var context = {
       type: thisResult.type,
       title: thisResult.name,
-      original_title: thisResult.original_name,
+      original_title: originalTitle,
       original_language: thisResult.original_language,
       vote_average: printStars(thisResult.vote_average),
       src: 'img/bandiera-'+language+'.png',

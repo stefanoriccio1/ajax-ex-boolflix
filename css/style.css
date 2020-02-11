@@ -27,6 +27,15 @@
   color: red;
 }
 /* container lista film/serie TV */
+.results{
+
+}
+.movies_list,
+.tv_series_list{
+  flex-direction: row;
+  width: 100vh;
+  flex-wrap: wrap;
+}
 .container{
   height: calc(100vh - 80px);
   overflow-y: scroll;
