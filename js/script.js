@@ -3,28 +3,34 @@ $(document).ready(function(){
 
   // prendo il value dalla searbar al click
   $(document).on('click', 'button', function(){
-    var input_value = $('.search_input').val();
-    var movie_list = $('.movies_list');
-    var tv_series_list = $('.tv_series_list');
-    var api_key = 'bed1a6ff22823f98181f2f55bd6f37ae';
-    var urlMovies = "https://api.themoviedb.org/3/search/movie";
-    var urlTvSeries = "https://api.themoviedb.org/3/search/tv";
-    var typeMovie = 'film';
-    var typeTvSeries = 'tv';
-
-    getData(input_value, api_key, urlMovies, typeMovie,'.movie_list');
-    getData(input_value, api_key, urlTvSeries, typeTvSeries, '.tv_series_list');
-
-    resetSearch('.search_input', movie_list, tv_series_list);
-
+    search();
   });
 
   $('.search_input').keypress(function(event){
-   console.log(alert('ehy'));
+   if(event.which == 13){
+     search();
+   }
   });
 });
 
 // FUNCTIONS ------------------>
+
+// funzione di ricerca che si attiva al click su search
+function search(){
+  var input_value = $('.search_input').val();
+  var movie_list = $('.movies_list');
+  var tv_series_list = $('.tv_series_list');
+  var api_key = 'bed1a6ff22823f98181f2f55bd6f37ae';
+  var urlMovies = "https://api.themoviedb.org/3/search/movie";
+  var urlTvSeries = "https://api.themoviedb.org/3/search/tv";
+  var typeMovie = 'film';
+  var typeTvSeries = 'tv';
+
+  getData(input_value, api_key, urlMovies, typeMovie,'.movie_list');
+  getData(input_value, api_key, urlTvSeries, typeTvSeries, '.tv_series_list');
+
+  resetSearch('.search_input', movie_list, tv_series_list);
+}
 
 // funzione di print generica
 function printResults(type, results){
