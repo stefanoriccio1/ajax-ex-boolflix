@@ -173,14 +173,24 @@ function printTveSeries(tv){
 
 // funzione di print generica
 
-function printResults(tv){
-
-  var tv_data = tv.results;
+function printResults(type, results){
   var source = $("#movie-template").html()
   var template = Handlebars.compile(source);
+  var title;
+  var originalTitle;
+
+  for (var i = 0; i < results.length; i++) {
+    thisResult = results[i];
+    if (type == 'film') {
+      originalTitle = thisResult.original_title;
+      title = thisResult.title;
+    }
+    else if (type == 'tv'){
+      originalTitle = thisResult.original_name;
+      title = thisResult.name;
+    }
 
 
-  for (var i = 0; i < tv_data.length; i++) {
     var poster = tv_data[i].poster_path;
     var language = tv_data[i].original_language;
     if (language != 'it' && language != 'en' && language != 'fr'){
