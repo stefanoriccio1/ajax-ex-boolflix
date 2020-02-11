@@ -45,15 +45,17 @@
     <!-- handlebars template -->
     <!-- tmplate per lista film -->
     <script id="movie-template" type="text/x-handlebars-template">
-      <li>
-        {{title}}
+      <div class='image'>
+      <img class='poster' src="{{{poster_path}}}" alt="">
+      <li class= 'card'>
         <ul class= 'movie_property'>
-          <img class='poster' src="{{{poster_path}}}" alt="">
+          <li>Titolo: {{title}}</li>
           <li>Titolo orginale: {{original_title}}</li>
           <li>Lingua Originale: {{original_language}} <img class= 'flag' src="{{src}}" alt=""> </li>
           <li>Voto: {{{vote_average}}}</li>
         </ul>
       </li>
+      </div>
     </script>
     <!-- /tmplate per lista film -->
     <!-- template per quando la ricerca non produce risultati -->

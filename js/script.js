@@ -137,7 +137,7 @@ function printStars (num){
 
 // funzione per stampare le copertine
 function printPoster(playbill){
-  var string='https://image.tmdb.org/t/p/w185'
+  var string='https://image.tmdb.org/t/p/w342'
   if (playbill != null){
     string += playbill;
   }
