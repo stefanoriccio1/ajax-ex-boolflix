@@ -1,7 +1,26 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.body{
+  font-size: 14px;
+}
 .flex{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.search{
+  justify-content: space-between;
+  background-color: black;
+  height: 80px;
+  padding: 20px 15px 1px 15px;
+}
+.logo{
+  font-size: 25px;
+  text-transform: uppercase;
+  color: red;
 }
 .flag{
   width: 20px;

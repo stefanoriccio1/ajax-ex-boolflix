@@ -1,11 +1,12 @@
 // bed1a6ff22823f98181f2f55bd6f37ae
 $(document).ready(function(){
 
-  // prendo il value dalla searbar al click
+  // prendo il value dalla searchbar al click
   $(document).on('click', 'button', function(){
     search();
   });
 
+  // prendo il value dalla searchbar al click dell'invio
   $('.search_input').keypress(function(event){
    if(event.which == 13){
      search();
