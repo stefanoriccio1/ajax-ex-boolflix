@@ -60,12 +60,13 @@ function printResults(type, results){
     };
     var context = {
       type: thisResult.type,
-      title: thisResult.name,
+      title: thisResult.title,
       original_title: originalTitle,
       original_language: thisResult.original_language,
       vote_average: printStars(thisResult.vote_average),
       src: 'img/bandiera-'+language+'.png',
-      poster_path: printPoster(poster)
+      poster_path: printPoster(poster),
+      overview: thisResult.overview
     };
     var html = template(context);
     container.append(html);
