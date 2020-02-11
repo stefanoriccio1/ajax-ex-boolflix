@@ -50,6 +50,9 @@ h2{
   text-transform: uppercase;
   color: red;
 }
+.logo p{
+  font-weight: bold;
+}
 /* container lista film/serie TV */
 
 .movie_property{
