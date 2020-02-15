@@ -6,6 +6,7 @@
 /* generiche */
 .body{
   font-size: 14px;
+  background-color: grey;
 }
 .flex{
   display: flex;
@@ -87,7 +88,7 @@ h2{
 .image{
   position: relative;
   width: 342px;
-  margin: 40px;
+  margin: calc(342px/5);
 }
 .fa-star{
   color: yellow;
