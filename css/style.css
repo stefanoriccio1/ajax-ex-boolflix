@@ -76,7 +76,6 @@ h2{
 }
 .container{
   height: calc(100vh - 80px);
-  overflow-y: scroll;
   background-color: grey;
 }
 .flag{

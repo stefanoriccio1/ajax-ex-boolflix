@@ -22,8 +22,8 @@ function search(){
   var movie_list = $('.movies_list');
   var tv_series_list = $('.tv_series_list');
   var api_key = 'bed1a6ff22823f98181f2f55bd6f37ae';
-  var urlMovies = "https://api.themoviedb.org/3/search/movie";
-  var urlTvSeries = "https://api.themoviedb.org/3/search/tv";
+  var urlMovies = 'https://api.themoviedb.org/3/search/movie';
+  var urlTvSeries = 'https://api.themoviedb.org/3/search/tv';
   var typeMovie = 'film';
   var typeTvSeries = 'tv';
 
@@ -35,7 +35,7 @@ function search(){
 
 // funzione di print generica
 function printResults(type, results){
-  var source = $("#movie-template").html()
+  var source = $("#movie-template").html();
   var template = Handlebars.compile(source);
   var title;
   var originalTitle;
@@ -66,7 +66,7 @@ function printResults(type, results){
       vote_average: printStars(thisResult.vote_average),
       src: 'img/bandiera-'+language+'.png',
       poster_path: printPoster(poster),
-      overview: thisResult.overview
+      overview: thisResult.overview,
     };
     var html = template(context);
     container.append(html);
@@ -76,7 +76,7 @@ function printResults(type, results){
 // funzione per no results nella chiamata
 function printNoResults(data){
   var movie_data = data.results;
-  var source = $("#no-results-template").html()
+  var source = $('#no-results-template').html();
   var template = Handlebars.compile(source);
 
   var html = template();
@@ -93,7 +93,7 @@ function getData(string, api_key, url, type, container){
       data: {
         api_key: api_key,
         query: string,
-        language: 'it-IT'
+        language: 'it-IT',
       },
       success: function (data) {
         if (data.total_results > 0){
@@ -117,7 +117,7 @@ function getData(string, api_key, url, type, container){
 function resetSearch (input, container, container2){
   $(input).val('');
   $(container).html('');
-  $(container2).html('')
+  $(container2).html('');
 }
 
 // funzione per trasfromare voti in stelle
@@ -133,7 +133,7 @@ function printStars (num){
     result += '<i class="far fa-star"></i>';
    }
  };
- return result
+ return result;
 };
 
 // funzione per stampare le copertine
@@ -145,7 +145,7 @@ function printPoster(playbill){
   else{
     string ='img/not_found_2.jpg';
   }
-  return string
+  return string;
 }
 
 
