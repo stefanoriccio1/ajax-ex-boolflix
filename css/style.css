@@ -57,7 +57,7 @@ h2{
 /* container lista film/serie TV */
 
 .movie_property{
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 .movies_list,
 .tv_series_list{
